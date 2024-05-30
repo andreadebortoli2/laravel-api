@@ -3,12 +3,21 @@
 @section('content')
     <div class="container py-3">
         <div class="row">
-            <div class="col my-2">
-                <h2>Types</h2>
+            <div class="col mb-2">
+                <h2 class="mb-5">Types</h2>
             </div>
             <div class="col">
                 @if (session('status'))
                     <div class="bg-light my-2 p-3 border border-secondary">{{ session('status') }}</div>
+                @endif
+                @if ($errors->all())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
                 @endif
             </div>
         </div>
@@ -18,14 +27,10 @@
                     @csrf
                     <div class="mb-3">
                         <label for="name" class="form-label">Type name</label>
-                        <input type="text" class="form-control @error('name', 'create') is-invalid @enderror"
-                            name="name" id="name" aria-describedby="helpId" placeholder="Type"
-                            value="{{ old('name') }}" />
+                        <input type="text" class="form-control @error('name') is-invalid @enderror" name="name"
+                            id="name" aria-describedby="helpId" placeholder="Type" value="{{ old('name') }}" />
                         <small id="helpId" class="form-text text-muted">Write the type name</small>
                     </div>
-                    @error('name', 'create')
-                        <div class="text-danger my-3">{{ $message }}</div>
-                    @enderror
                     <button type="submit" class="btn btn-primary">
                         Add new type
                     </button>
@@ -52,12 +57,12 @@
                                             @method('PUT')
                                             <div class="mb-3">
                                                 <input type="text"
-                                                    class="form-control @error('name', $type->id) is-invalid 
-                                            @enderror"
+                                                    class="form-control @error('name') is-invalid 
+                                                    @enderror"
                                                     name="name" id="name" aria-describedby="helpId"
-                                                    value="{{ $type->name }}" />
+                                                    value="{{ old('name', $type->name) }}" />
                                             </div>
-                                            @error('name', $type->id)
+                                            @error('name')
                                                 <div class="text-danger">{{ $message }}</div>
                                             @enderror
                                         </form>

@@ -3,8 +3,8 @@
 @section('content')
     <div class="container py-3">
         <div class="row">
-            <div class="col my-2">
-                <h2>Technologies</h2>
+            <div class="col mb-2">
+                <h2 class="mb-5">Technologies</h2>
             </div>
             <div class="col">
                 @if (session('status'))
@@ -18,13 +18,12 @@
                     @csrf
                     <div class="mb-3">
                         <label for="name" class="form-label">Technology name</label>
-                        <input type="text" class="form-control @error('name', 'create') is-invalid @enderror"
-                            name="name" id="name" aria-describedby="helpId" placeholder="Technology"
-                            value="{{ old('name') }}" />
+                        <input type="text" class="form-control @error('name') is-invalid @enderror" name="name"
+                            id="name" aria-describedby="helpId" placeholder="Technology" value="{{ old('name') }}" />
                         <small id="helpId" class="form-text text-muted">Write the technology name</small>
                     </div>
-                    @error('name', 'create')
-                        <div class="text-danger my-3">{{ $message }}</div>
+                    @error('name')
+                        <div class="text-danger">{{ $message }}</div>
                     @enderror
                     <button type="submit" class="btn btn-primary">
                         Add
@@ -52,11 +51,11 @@
                                             @method('PUT')
                                             <div class="mb-3">
                                                 <input type="text"
-                                                    class="form-control @error('name', $technology->id) is-invalid @enderror"
-                                                    name="name" id="name" aria-describedby="helpId"
-                                                    placeholder="Technology" value="{{ $technology->name }}" />
+                                                    class="form-control @error('name') is-invalid @enderror" name="name"
+                                                    id="name" aria-describedby="helpId" placeholder="Technology"
+                                                    value="{{ old('name', $technology->name) }}" />
                                             </div>
-                                            @error('name', $technology->id)
+                                            @error('name')
                                                 <div class="text-danger">{{ $message }}</div>
                                             @enderror
                                         </form>
