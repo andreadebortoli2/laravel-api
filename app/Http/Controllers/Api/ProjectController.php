@@ -18,4 +18,21 @@ class ProjectController extends Controller
             'projects' => $projects
         ]);
     }
+
+    public function show($id)
+    {
+        $single_project = Project::with('type', 'technologies')->where('id', $id)->first();
+
+        if ($single_project) {
+            return  response()->json([
+                'success' => true,
+                'project' => $single_project
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'project' => '404'
+            ]);
+        }
+    }
 }
