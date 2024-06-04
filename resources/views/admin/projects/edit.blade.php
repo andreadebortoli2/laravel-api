@@ -24,16 +24,6 @@
                 @enderror
             </div>
             <div class="mb-3">
-                <label for="" class="form-label">Author</label>
-                <input type="text" class="form-control @error('author') is-invalid @enderror" name="author"
-                    id="author" aria-describedby="helpIdAuthor" placeholder="Name"
-                    value="{{ old('author', $project->author) }}" />
-                <small id="helpIdAuthor" class="form-text text-muted">Write the name of the author</small>
-                @error('author')
-                    <div class="text-danger">{{ $message }}</div>
-                @enderror
-            </div>
-            <div class="mb-3">
                 <label for="type_id" class="form-label">Type</label>
                 <select class="form-select form-select-lg" name="type_id" id="type_id">
                     <option selected disabled>Select type</option>
@@ -68,7 +58,7 @@
                         </option>
                         @foreach ($technologies as $tech)
                             <option value="{{ $tech->id }}"
-                                {{ $project->technologies->contains($technologies) ? 'selected' : '' }}>
+                                {{ in_array($tech->id, $project->technologies->pluck('id')->toArray()) ? 'selected' : '' }}>
                                 {{ $tech->name }}
                             </option>
                         @endforeach

@@ -57,7 +57,6 @@
                     <div class="bg-light my-2 p-3 border border-secondary">{{ session('status') }}</div>
                 @endif
                 <h2>{{ $project->title }}</h2>
-                <h6>Author: <strong>{{ $project->author }}</strong></h6>
                 <div class="metadata"><strong>Source code:</strong> <a class="text-muted"
                         href="{{ $project->source_code_url }}">{{ $project->source_code_url }}</a>
                     <br>

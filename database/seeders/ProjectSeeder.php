@@ -23,7 +23,6 @@ class ProjectSeeder extends Seeder
             $project->title = $faker->sentence();
             $project->slug = Str::of($project->title)->slug('-');
             $project->type_id = Type::all()->random()->id;
-            $project->author = $faker->userName();
             $project->source_code_url = $faker->url();
             $project->production_site_url = $faker->url();
             $project->description = $faker->text();

@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('title', 150)->unique();
             $table->string('slug');
-            $table->string('author', 50)->nullable();
             $table->string('source_code_url')->nullable();
             $table->string('production_site_url')->nullable();
             $table->text('description')->nullable();
