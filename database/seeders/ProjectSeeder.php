@@ -29,5 +29,11 @@ class ProjectSeeder extends Seeder
             $project->image = $faker->imageUrl(700, 550, null, true, null, false, 'png');
             $project->save();
         }
+
+        $technologies_array = range(1, 8);
+
+        foreach (Project::all() as $project) {
+            $project->technologies()->attach($faker->randomElements($technologies_array, null));
+        }
     }
 }
