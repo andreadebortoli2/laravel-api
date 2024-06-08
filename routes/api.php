@@ -26,6 +26,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('projects', [ProjectController::class, 'index']);
 Route::get('projects/{project:slug}', [ProjectController::class, 'show']);
 
+// remember to remove before the productio phase
 Route::get('mailable', function () {
 
     $data = Contact::all()->last();
