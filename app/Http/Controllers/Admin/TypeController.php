@@ -20,14 +20,6 @@ class TypeController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(StoreTypeRequest $request)
@@ -39,22 +31,6 @@ class TypeController extends Controller
         Type::create($validated);
 
         return to_route('admin.types.index')->with('status', "$request->name - Type created");
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Type $type)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Type $type)
-    {
-        //
     }
 
     /**
