@@ -34,7 +34,8 @@
                                         DELETING PROJECT
                                     </h5>
                                 </div>
-                                <div class="modal-body">You're deleting {{ $project->title }}, it will not be
+                                <div class="modal-body">You're deleting <span
+                                        class="text-danger">{{ $project->title }}</span>, it will not be
                                     possible to bring it back</div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">

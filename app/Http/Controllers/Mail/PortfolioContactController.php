@@ -11,6 +11,12 @@ use Illuminate\Support\Facades\Validator;
 
 class PortfolioContactController extends Controller
 {
+
+    public function index()
+    {
+        return view('mail.index', ['mails' => Contact::orderByDesc('id')->paginate(8)]);
+    }
+
     public function Store(Request $request)
     {
         // dd($request);
@@ -39,5 +45,17 @@ class PortfolioContactController extends Controller
                 'message' => 'message successfully sent'
             ]);
         };
+    }
+
+    public function show(Contact $mail)
+    {
+        return view('mail.show', compact('mail'));
+    }
+
+    public function destroy(Contact $mail)
+    {
+        $mail->delete();
+
+        return to_route('admin.mails.index')->with('status', "Mail from $mail->name deleted");
     }
 }

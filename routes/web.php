@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\TechnologyController;
 use App\Http\Controllers\Admin\TypeController;
+use App\Http\Controllers\Mail\PortfolioContactController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
@@ -40,6 +41,9 @@ Route::middleware(['auth', 'verified'])
 
         // Technologies
         Route::resource('technologies', TechnologyController::class)->parameters(['technologies' => 'technology:slug']);
+
+        // Mails
+        Route::resource('mails', PortfolioContactController::class);
     });
 
 Route::middleware('auth')->group(function () {
