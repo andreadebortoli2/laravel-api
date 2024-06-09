@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Technology;
 use App\Http\Requests\StoreTechnologyRequest;
 use App\Http\Requests\UpdateTechnologyRequest;
+use App\Models\Project;
 use Illuminate\Support\Str;
 
 
@@ -32,6 +33,15 @@ class TechnologyController extends Controller
         Technology::create($validated);
 
         return to_route('admin.technologies.index')->with('status', "$request->name - Technology created");
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(Technology $technology)
+    {
+        $projects = $technology->projects()->get();
+        return view('admin.technologies.show', compact('technology', 'projects'));
     }
 
     /**
