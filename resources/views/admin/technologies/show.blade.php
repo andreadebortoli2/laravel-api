@@ -3,6 +3,7 @@
 @section('content')
     <div class="container py-3">
         <div class="table-responsive">
+            <h2>{{ $technology->name }}</h2>
             <table class="table table-success">
                 <thead>
                     <tr>
