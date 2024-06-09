@@ -67,7 +67,12 @@
                                             @enderror
                                         </form>
                                     </td>
-                                    <td class="text-center">{{ count($type->projects) }}</td>
+                                    <td class="text-center">
+                                        <a class="text-dark text-decoration-none"
+                                            href="{{ route('admin.types.show', $type) }}">
+                                            {{ count($type->projects) }}
+                                        </a>
+                                    </td>
                                     <td scope="col">
                                         <!-- Modal trigger button -->
                                         <button type="button" class="btn btn-danger btn-sm m-2" data-bs-toggle="modal"

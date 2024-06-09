@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Type;
 use App\Http\Requests\StoreTypeRequest;
 use App\Http\Requests\UpdateTypeRequest;
+use App\Models\Project;
 use Illuminate\Support\Str;
 
 
@@ -34,6 +35,15 @@ class TypeController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     */
+    public function show(Type $type)
+    {
+        $projects = Project::where('type_id', $type->id)->get();
+        return view('admin.types.show', compact('type', 'projects'));
+    }
+
+    /**
      * Update the specified resource in storage.
      */
     public function update(UpdateTypeRequest $request, Type $type)
@@ -45,6 +55,13 @@ class TypeController extends Controller
         $type->update($validated);
 
         return to_route('admin.types.index')->with('status', "$request->name - Type successfully edited");
+    }
+
+    public function filter(Type $type)
+    {
+        /* dd(Type::all(), $type); */
+        // $projects = Project::where('type_id', $type->id)->get();
+        return view('admin.types.filter', compact('type'));
     }
 
     /**
